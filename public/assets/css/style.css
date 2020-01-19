@@ -1,0 +1,123 @@
+
+
+body {
+  margin-bottom: 50px;
+  background-color: rgba(56, 56, 56, 0);
+}
+h1{
+  font-family: 'Zhi Mang Xing', cursive;
+  text-shadow: 2px 2px black; 
+  font-weight:bold;
+  padding: 0 10px;
+  
+  color:red;
+  background-color: black;
+}
+
+#headList{
+  float:right;
+  clear:both;
+  background-color: black;
+  list-style: none;
+  margin:0;
+  padding:0;
+
+}
+
+.lead, .display-4{
+  display:flex;
+  justify-content: center;
+}
+
+.lead{
+  color:white;
+}
+
+.card a:not([href]):not([tabindex]).scrape-new {
+  color: #007bff;
+}
+
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.jumbotron{
+  background-image: url("../images/background.jpg");
+  background-repeat:no-repeat;
+  background-size:cover;
+  height:480px;
+}
+
+
+
+.article-container {
+  padding-bottom: 25px;
+}
+
+.card {
+  border-radius: 0;
+  box-shadow: 3px 3px 20px lightslategrey;
+  margin: 20px 0;
+}
+
+.card .card-header {
+  background-color: #007bff;
+  position: relative;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+
+.card .card-header h3 {
+  color: white;
+}
+
+.card .card-header .btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.card .card-header .btn.delete {
+  right: 160px;
+}
+
+.card .card-body {
+  font-size: 16px;
+}
+
+.card .card-header .article-link {
+  color: white;
+  display: inline-block;
+  width: 80%;
+}
+
+.navbar-nav > li > a.scrape-new,
+.navbar-nav > li > a.clear {
+  padding: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+  font-weight: 800;
+  color: white;
+}
+
+.m-top-80 {
+  margin-top: 80px;
+}
+
+textarea {
+  padding: 10px;
+  resize: none;
+  width: 100%;
+}
+
+.bootbox-body .btn {
+  float: right;
+  margin: 5px;
+}
+
+.note.list-group-item .btn {
+  position: relative;
+  bottom: 10px;
+}
