@@ -52,8 +52,8 @@ $(document).ready(function() {
   }
 
   function renderEmpty() {
-    alert("none!")
-  }
+    $("#noArticles").modal("toggle")
+  };
 
   function handleArticleSave() {
     var articleToSave = $(this)
