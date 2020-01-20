@@ -4,6 +4,10 @@ const mongoose = require("mongoose");
 const db = require("../models");
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:password1@ds151612.mlab.com:51612/heroku_4d6dqwsk";
+<<<<<<< HEAD
+=======
+
+>>>>>>> b7d5379f4630e6ff852efb2a03059898ef4a04ca
 mongoose.connect(MONGODB_URI,{  useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
 
 module.exports = function (app) {
