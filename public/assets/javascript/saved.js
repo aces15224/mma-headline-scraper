@@ -6,24 +6,32 @@ $(document).ready(function() {
   $(document).on("click", ".btn.note-delete", handleNoteDelete);
   $(".clear").on("click", handleArticleClear);
 
-  function initialize() {
-    $.get("/api/headlines?saved=true").then(function(data) {
-      articleContainer.empty();
-      if (data && data.length) {
-        renderArticles(data);
-      } else {
-        renderEmpty();
-      }
-    });
-  }
 
-  function renderArticles(articles) {
-    var articleCards = [];
-    for (var i = 0; i < articles.length; i++) {
-      articleCards.push(createCard(articles[i]));
+  $.get("/api/headlines?saved=true").then(function(data) {
+    articleContainer.empty();
+    if (data && data.length) {
+      renderArticles(data);
+    } else {
+      renderEmpty();
     }
-    articleContainer.append(articleCards);
-  }
+  });
+ 
+  $(window).resize(function() {
+    if (window.innerWidth > 991){
+      document.location.reload();
+    } 
+  });
+  
+    function renderArticles(articles) { 
+      var articleCards = [];
+      for (var i = 0; i < articles.length; i++) {
+        if(articles[i].summary.length > 13 && articles[i].saved == true && articles[i].headline != ""){
+          articleCards.push(createCard(articles[i]));
+          }
+        }
+      articleContainer.append(articleCards);
+    }
+  
 
   function createCard(article) {
     var card = $("<div class='card'>");
@@ -37,7 +45,9 @@ $(document).ready(function() {
       )
     );
 
-    var cardBody = $("<div class='card-body'>").text(article.summary);
+    var dataSum = article.summary
+    var dataRep = dataSum.replace('Filed under:','');
+    var cardBody = $("<div class='card-body'>").text(dataRep);
 
     card.append(cardHeader, cardBody);
     card.data("_id", article._id);
@@ -52,7 +62,7 @@ $(document).ready(function() {
     var notesToRender = [];
     var currentNote;
     if (!data.notes.length) {
-      currentNote = $("<li class='list-group-item'>No notes for this article yet.</li>");
+      currentNote = $("<li class='list-group-item'>No Comments!</li>");
       notesToRender.push(currentNote);
     } else {
       for (var i = 0; i < data.notes.length; i++) {
@@ -92,7 +102,7 @@ $(document).ready(function() {
       console.log(data)
       var modalText = 
         $("<div class='container-fluid text-center'>").append(
-        $("<h4>").text("Notes For Article: " + currentArticle._id),
+        $("<h4>").text("Comments for Current Story"),
         $("<hr>"),
         $("<ul class='list-group note-container'>"),
         $("<textarea placeholder='New Note' rows='4' cols='60'>"),
@@ -114,9 +124,7 @@ $(document).ready(function() {
 
   function handleNoteSave() {
     var noteData;
-    var newNote = $(".bootbox-body textarea")
-      .val()
-      .trim();
+    var newNote = $(".bootbox-body textarea").val().trim();
     if (newNote) {
       noteData = { _headlineId: $(this).data("article")._id, noteText: newNote };
       $.post("/api/notes", noteData).then(function() {

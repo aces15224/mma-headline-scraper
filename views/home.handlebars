@@ -1,19 +1,19 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">MMA Headline Scraper</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg">
+  <a class="navbar-brand" href="/"><h2 class="title">MMA Headline Scraper</h2></a>
+  <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        <a id="home" class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/saved">Saved Stories</a>
       </li>
       <li>
-        <a class="btn btn-danger scrape-new">Scrape New Stories</a>
+        <a class="btn btn-success scrape-new">Scrape New Stories</a>
       </li>
       <li>
         <a class="btn btn-danger clear">Clear Results</a>
@@ -31,21 +31,8 @@
   </div>
 </div>
 
-<div class="container-fluid article-container">
-{{#if article}}
-  {{#each article}}
-  <div data-_id={{this._id}} class="card">
-    <div class="card-header">
-      <h3>
-        <a class="article-link" target="_blank" rel="noopener noreferrer" href={{this.url}}>{{this.headline}}</a>
-        <a class="btn btn-success save">Save Article</a>
-      </h3>
-    </div>
-    <div class="card-body">{{this.summary}}</div>
-  </div>
-  {{/each}}
-</div>
-{{/if}}
+<div class="container-fluid article-container"></div>
+
 
 
 

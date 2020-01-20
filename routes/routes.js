@@ -19,6 +19,16 @@ module.exports = function (app) {
     })
   });
 
+  app.get("/api/headlines", function(req, res) {
+    db.Article.find({})
+    .then(function(dbArticle) {
+    res.json(dbArticle);
+    })
+    .catch(function(err) {
+    res.json(err);
+    });
+  });
+
   app.put("/api/headlines/:id", function(req, res){
     var saved = req.body.saved == 'true'
     if(saved){
@@ -33,7 +43,6 @@ module.exports = function (app) {
   });
 
   app.delete("/api/headlines/:id", function(req, res){
-    console.log('reqbody:' + JSON.stringify(req.params.id))
     db.Article.deleteOne({_id: req.params.id}, function(err, result){
       if (err) {
         console.log(err)

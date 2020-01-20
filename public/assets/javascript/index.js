@@ -3,10 +3,9 @@ $(document).ready(function() {
   $(document).on("click", ".btn.save", handleArticleSave);
   $(document).on("click", ".scrape-new", handleArticleScrape);
   $(".clear").on("click", handleArticleClear);
-  initialize() 
-  function initialize() {
-    $.get("/api/headlines?saved=false").then(function(data) {
-
+  
+  
+     $.get("/api/headlines?saved=false").then(function(data) {
       articleContainer.empty();
       if (data && data.length) {
         renderArticles(data);
@@ -14,13 +13,21 @@ $(document).ready(function() {
         renderEmpty();
       }
     });
-  }
+  
+  $(window).resize(function() {
+    if (window.innerWidth > 991){
+      document.location.reload();
+    } 
+  });
+
 
   function renderArticles(articles) { 
     var articleCards = [];
     for (var i = 0; i < articles.length; i++) {
-      articleCards.push(createCard(articles[i]));
-    }
+      if(articles[i].summary.length > 13 && articles[i].saved == false && articles[i].headline != ""){
+        articleCards.push(createCard(articles[i]));
+        }
+      }
     articleContainer.append(articleCards);
   }
 
@@ -30,12 +37,14 @@ $(document).ready(function() {
       $("<h3>").append(
         $("<a class='article-link' target='_blank' rel='noopener noreferrer'>")
           .attr("href", article.url)
-          .text(article.headline),
-        $("<a class='btn btn-success save'>Save Article</a>")
+        .text(article.headline),
+          $("<a class='btn btn-danger save'>Save Article</a>")
       )
     );
 
-    var cardBody = $("<div class='card-body'>").text(article.summary);
+    var dataSum = article.summary
+    var dataRep = dataSum.replace('Filed under:','');
+    var cardBody = $("<div class='card-body'>").text(dataRep);
 
     card.append(cardHeader, cardBody);
     card.data("_id", article._id);
