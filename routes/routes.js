@@ -7,7 +7,6 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:password1@ds151612.
 <<<<<<< HEAD
 =======
 
->>>>>>> b7d5379f4630e6ff852efb2a03059898ef4a04ca
 mongoose.connect(MONGODB_URI,{  useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
 
 module.exports = function (app) {
